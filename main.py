@@ -60,7 +60,6 @@ def calculate_interest_api(payload: InterestInput):
 
 @app.on_event("startup")
 def startup_event():
-    # يمنع تكرار تشغيل Scheduler محليًا
-    if os.environ.get("RENDER"):
+    if os.environ.get("ENABLE_SCHEDULER") == "true":
         start_scheduler()
-        print("Scheduler started on Render")
+        print("Scheduler started")
